@@ -1,0 +1,47 @@
+*md-check-toggle.txt*    Toggle Markdown checkboxes in Neovim
+
+MD-CHECK-TOGGLE                                     *md-check-toggle*
+
+A simple Neovim plugin to toggle Markdown checkmarks.
+
+==============================================================================
+USAGE                                               *md-check-toggle-usage*
+
+By default, the plugin maps `<leader>cc` in both normal and visual modes
+for markdown files.
+
+Commands:
+    :MDCheckToggle      Toggle the checkmark on the current line or range.
+
+==============================================================================
+CONFIGURATION                                      *md-check-toggle-config*
+
+You can configure the plugin using the `setup` function:
+
+>lua
+    require('md-check-toggle').setup({
+        states = { "[ ]", "[/]", "[x]" }, -- Default: { "[ ]", "[x]" }
+        mapping = "<leader>ct",           -- Default: "<leader>cc"
+    })
+<
+
+- `states`: A list of strings representing the checkbox states to cycle
+  through. `[X]` is automatically handled as a synonym for `[x]` when
+  cycling if not explicitly included.
+- `mapping`: The keymap to use. Set to `nil` to disable default mapping.
+
+==============================================================================
+LUA API                                              *md-check-toggle-api*
+
+- `require('md-check-toggle').toggle(opts)`
+  The main toggle function. `opts` can contain:
+    - `range`: boolean (if true, use line1/line2)
+    - `line1`: number
+    - `line2`: number
+
+- `require('md-check-toggle').toggle_line(line)`
+  Returns a new string with the checkbox toggled, or the original line if
+  no checkbox is found.
+
+==============================================================================
+vim:tw=78:ts=8:ft=help:norl:
