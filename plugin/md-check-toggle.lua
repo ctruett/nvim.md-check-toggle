@@ -1,7 +1,7 @@
 if vim.fn.exists('g:loaded_md_check_toggle') == 1 then
   return
 end
-vim.g:loaded_md_check_toggle = 1
+vim.g.loaded_md_check_toggle = 1
 
 local md_check = require("md-check-toggle")
 
